@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
+import { ErrorMessage } from '../types/ErrorMessage';
 
 type Props = {
   addTodo: (title: string) => Promise<void>;
@@ -30,7 +31,7 @@ export const Header: React.FC<Props> = ({
     event.preventDefault();
 
     if (title.trim() === '') {
-      setErrorMessage('Title should not be empty');
+      setErrorMessage(ErrorMessage.EMPTY_TITLE);
 
       return;
     }
@@ -41,7 +42,7 @@ export const Header: React.FC<Props> = ({
         setErrorMessage('');
       })
       .catch(() => {
-        setErrorMessage('Unable to add a todo');
+        setErrorMessage(ErrorMessage.ADD);
       });
   };
 
