@@ -8,7 +8,7 @@ type Props = {
   isInputDisabled: boolean;
   inputRef: React.RefObject<HTMLInputElement>;
   allTodosIsComplited: boolean;
-  isTodosEmpty: boolean;
+  hasTodos: boolean; // ✅ заміна isTodosEmpty
   toggleTodos: () => void;
 };
 
@@ -18,7 +18,7 @@ export const Header: React.FC<Props> = ({
   isInputDisabled,
   inputRef,
   allTodosIsComplited,
-  isTodosEmpty,
+  hasTodos,
   toggleTodos,
 }) => {
   const [title, setTitle] = useState('');
@@ -48,14 +48,14 @@ export const Header: React.FC<Props> = ({
 
   return (
     <header className="todoapp__header">
-      {!isTodosEmpty && (
+      {hasTodos && (
         <button
           type="button"
           className={classNames('todoapp__toggle-all', {
             active: allTodosIsComplited,
           })}
           data-cy="ToggleAllButton"
-          onClick={() => toggleTodos()}
+          onClick={toggleTodos}
         />
       )}
 
